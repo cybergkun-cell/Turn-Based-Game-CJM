@@ -63,4 +63,13 @@ abstract class Hero {
     public boolean isAlive(){
         return this.hp > 0;
     }
+    public String getName() {
+    return name;
+    }
+    public int getHp(){
+        return hp;
+    }
+    public int getMp(){
+        return mp;
+    }
 }

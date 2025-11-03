@@ -7,4 +7,15 @@ public class Skill {
         this.manacomp = manacomp;
         this.damage = damage;
     }
+     public String getSkill_Name() {
+        return name;
+    }
+
+    public int getSkill_ManaComp() {
+        return manacomp;
+    }
+
+    public int getSkill_Damage() {
+        return damage;
+    }
 }
