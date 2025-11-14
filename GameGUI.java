@@ -122,9 +122,9 @@ public class GameGUI extends JFrame {
 
         // Add hero grid to CENTER of BorderLayout
         selectionScreen.add(heroGrid, BorderLayout.CENTER);
-
-        // ==== BACK BUTTON (bottom right) ====
-        JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 40, 20));
+   // ==== BACK BUTTON (bottom right) ====
+     
+        JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 40, 20));
         bottomPanel.setBackground(new Color(40, 40, 60));
 
         JButton backButton = new JButton("BACK");
