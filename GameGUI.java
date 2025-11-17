@@ -118,52 +118,70 @@ public class GameGUI extends JFrame {
 
     
     private JPanel createSelectionScreen() {
-        ImageBackgroundPanel selectionScreen = new ImageBackgroundPanel("/assets/eldora-background.png");
-        selectionScreen.setLayout(new BorderLayout());
+    ImageBackgroundPanel selectionScreen = new ImageBackgroundPanel("/assets/eldora-background.png");
+    selectionScreen.setLayout(new BorderLayout());
 
-        // ==== HERO GRID ====
-        JPanel heroGrid = new JPanel(new GridBagLayout());
-        heroGrid.setOpaque(false); // Transparent background
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(20, 30, 20, 30);
+    // ==== HERO GRID ====
+    JPanel heroGrid = new JPanel(new GridBagLayout());
+    heroGrid.setOpaque(false);
+    GridBagConstraints gbc = new GridBagConstraints();
+    gbc.insets = new Insets(20, 30, 20, 30);
 
-        JPanel archerPanel = createHeroPanel("ARCHER", "HP: 160", "MP: 140");
-        JPanel warriorPanel = createHeroPanel("WARRIOR", "HP: 200", "MP: 120");
-        JPanel magePanel = createHeroPanel("MAGE", "HP: 120", "MP: 180");
-        JPanel assassinPanel = createHeroPanel("ASSASSIN", "HP: 140", "MP: 150");
-        JPanel tankPanel = createHeroPanel("TANK", "HP: 250", "MP: 100");
+    JPanel archerPanel = createHeroPanel("ARCHER", "HP: 160", "MP: 140");
+    JPanel warriorPanel = createHeroPanel("WARRIOR", "HP: 200", "MP: 120");
+    JPanel magePanel = createHeroPanel("MAGE", "HP: 120", "MP: 180");
+    JPanel assassinPanel = createHeroPanel("ASSASSIN", "HP: 140", "MP: 150");
+    JPanel tankPanel = createHeroPanel("TANK", "HP: 250", "MP: 100");
 
-        gbc.gridx = 0; gbc.gridy = 0; heroGrid.add(archerPanel, gbc);
-        gbc.gridx = 1; gbc.gridy = 0; heroGrid.add(warriorPanel, gbc);
-        gbc.gridx = 2; gbc.gridy = 0; heroGrid.add(magePanel, gbc);
-        gbc.gridx = 0; gbc.gridy = 1; heroGrid.add(assassinPanel, gbc);
-        gbc.gridx = 1; gbc.gridy = 1; heroGrid.add(tankPanel, gbc);
+    gbc.gridx = 0; gbc.gridy = 0; heroGrid.add(archerPanel, gbc);
+    gbc.gridx = 1; gbc.gridy = 0; heroGrid.add(warriorPanel, gbc);
+    gbc.gridx = 2; gbc.gridy = 0; heroGrid.add(magePanel, gbc);
+    gbc.gridx = 0; gbc.gridy = 1; heroGrid.add(assassinPanel, gbc);
+    gbc.gridx = 1; gbc.gridy = 1; heroGrid.add(tankPanel, gbc);
 
-        selectionScreen.add(heroGrid, BorderLayout.CENTER);
-        
-        // ==== BACK BUTTON ====
-        JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 40, 20));
-        bottomPanel.setOpaque(false); // Transparent background
+    selectionScreen.add(heroGrid, BorderLayout.CENTER);
+    
+    // ==== BOTTOM PANEL with BACK (left) and CONTINUE (right) ====
+    JPanel bottomPanel = new JPanel(new BorderLayout());
+    bottomPanel.setOpaque(false);
+    bottomPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
 
-        JButton backButton = new JButton("BACK");
-        backButton.setFont(new Font("Serif", Font.BOLD, 28));
-        backButton.setForeground(Color.WHITE);
-        styleButton(backButton);
+    // BACK button on the left
+    JButton backButton = new JButton("BACK");
+    backButton.setFont(new Font("Serif", Font.BOLD, 28));
+    backButton.setForeground(Color.WHITE);
+    styleButton(backButton);
 
-        bottomPanel.add(backButton);
-        selectionScreen.add(bottomPanel, BorderLayout.SOUTH);
+    // CONTINUE button on the right
+    JButton continueButton = new JButton("CONTINUE");
+    continueButton.setFont(new Font("Serif", Font.BOLD, 28));
+    continueButton.setForeground(Color.WHITE);
+    styleButton(continueButton);
 
-        // ==== Click events for heroes ====
-        addHeroClick(archerPanel, new Archer("Rex"));
-        addHeroClick(warriorPanel, new Warrior("Adrian"));
-        addHeroClick(magePanel, new Mage("Cyberg"));
-        addHeroClick(assassinPanel, new Assassin("Jhush"));
-        addHeroClick(tankPanel, new Tank("Clarence"));
+    // Add buttons to panel
+    bottomPanel.add(backButton, BorderLayout.WEST);
+    bottomPanel.add(continueButton, BorderLayout.EAST);
 
-        backButton.addActionListener(e -> gameCardLayout.show(gamePanel, "PlayScreen"));
+    selectionScreen.add(bottomPanel, BorderLayout.SOUTH);
 
-        return selectionScreen;
-    }
+    // ==== Click events for heroes ====
+    addHeroClick(archerPanel, new Archer("Rex"));
+    addHeroClick(warriorPanel, new Warrior("Adrian"));
+    addHeroClick(magePanel, new Mage("Cyberg"));
+    addHeroClick(assassinPanel, new Assassin("Jhush"));
+    addHeroClick(tankPanel, new Tank("Clarence"));
+
+    // ==== Button actions ====
+    backButton.addActionListener(e -> gameCardLayout.show(gamePanel, "PlayScreen"));
+    
+    // CONTINUE button action (placeholder - does nothing for now)
+    continueButton.addActionListener(e -> {
+        // This will be implemented later
+        System.out.println("Continue button clicked - functionality to be added");
+    });
+
+    return selectionScreen;
+}
 
     // --- Game Mode Screen ---
     private JPanel createGameModeScreen() {
