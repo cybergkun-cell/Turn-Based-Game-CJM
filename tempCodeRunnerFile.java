@@ -1,2 +1,0 @@
-
-        playerInfo.add(name);
